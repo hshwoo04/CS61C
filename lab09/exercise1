@@ -1,0 +1,42 @@
+__m128i _mm_div_epi32 (__m128i a, __m128i b)
+
+Synopsis
+__m128i _mm_div_epi32 (__m128i a, __m128i b)
+#include "immintrin.h"
+CPUID Flags: SSE
+Description
+Divide packed 32-bit integers in a by packed elements in b, and store the truncated results in dst.
+Operation
+FOR j := 0 to 3 i := 32*j dst[i+31:i] := TRUNCATE(a[i+31:i] / b[i+31:i]) ENDFOR dst[MAX:128] := 0
+
+
+
+__m128i _mm_div_epi8 (__m128i a, __m128i b)
+Synopsis
+__m128i _mm_div_epi8 (__m128i a, __m128i b)
+#include "immintrin.h"
+CPUID Flags: SSE
+Description
+Divide packed 8-bit integers in a by packed elements in b, and store the truncated results in dst.
+Operation
+FOR j := 0 to 15 i := 8*j dst[i+7:i] := TRUNCATE(a[i+7:i] / b[i+7:i]) ENDFOR dst[MAX:128] := 0
+
+
+
+__m128i _mm_sra_epi16 (__m128i a, __m128i count)
+Synopsis
+__m128i _mm_sra_epi16 (__m128i a, __m128i count)
+#include "emmintrin.h"
+Instruction: psraw xmm, xmm
+CPUID Flags: SSE2
+Description
+Shift packed 16-bit integers in a right by count while shifting in sign bits, and store the results in dst.
+Operation
+FOR j := 0 to 7 i := j*16 IF count[63:0] > 15 dst[i+15:i] := SignBit ELSE dst[i+15:i] := SignExtend(a[i+15:i] >> count[63:0]) FI ENDFOR
+
+Performance
+Architecture	Latency	Throughput
+Westmere	2	-
+Nehalem	2	-
+
+
